@@ -31,17 +31,19 @@ description: Develop and audit Thirsty Snail／蜗牛 anthropomorphic Vlogs in �
 
 | 当前任务 | 必读资料 | 按需读取 |
 |---|---|---|
-| 核对分析版本、复算数据 | `references/b-vlog-source-manifest.md` | `references/b-vlog-final-analysis.md`、两份逐切镜案例 |
+| 核对分析版本、复算数据 | `references/b-vlog-source-manifest.md` | `references/b-vlog-final-analysis.md`、`references/b-vlog-five-scripts-shot-deconstruction.md` |
 | 选题、主题讨论 | `references/b-vlog-story-arc-framework.md` | `references/b-vlog-scene-architecture.md`、历史机制索引 |
 | 故事大纲、转场与节奏审校 | `references/b-vlog-scene-architecture.md`、`references/b-vlog-story-arc-framework.md` | `references/reference-mechanics.md`、完整分析相关章节 |
 | 角色情节、选角 | `references/cast-policy.md`、`references/character-continuity.md` | `references/reference-mechanics.md` |
-| Storyboard／逐切镜 | `references/reference-mechanics.md`、`references/templates.md` | `references/b-vlog-five-column-examples.md`、`references/b-vlog-shot-prompt-examples.md` |
-| 首帧提示词 | `references/templates.md`、`references/b-vlog-shot-prompt-examples.md` | 完整分析第 28—30 节 |
+| Storyboard／逐切镜 | `references/reference-mechanics.md`、`references/templates.md` | `references/b-vlog-five-scripts-shot-deconstruction.md` |
+| 首帧提示词 | `references/templates.md` | `references/b-vlog-five-scripts-shot-deconstruction.md`、完整分析第 28—30 节 |
 | 视频提示词与结果验收 | `references/templates.md`、`references/seedance-validation-checklist.md` | 完整分析第 31—33、47—50 节 |
 | 修订、冻结、失效传播 | `references/production-versioning.md` | 当前脚本的 `脚本状态.md`、`版本记录.md` |
 | 兼容资产／组级 Seedance | `references/asset-prep-template.md`、`references/seedance-validation-checklist.md` | `references/templates.md` 对应章节 |
 
-`b-vlog-final-analysis.md` 是长证据库，不是日常必读文件。只读取与当前问题相关的章节；可先检索：
+`b-vlog-final-analysis.md` 与 `b-vlog-five-scripts-shot-deconstruction.md` 组成完整证据包，分别提供分析结论和 5 条样本、281 个实际切镜。它们只在深度研究、复算、原片核对或用户明确要求样本逐镜时按需读取；普通创作优先读取上表短版资料，不要一次加载两份长文。
+
+读取完整分析时，只读取与当前问题相关的章节；可先检索：
 
 - 选题：`^# 0`、`^# 2`
 - 环境与容量：`1.3`、`1.4`、`1.5`、`1.11`
