@@ -34,7 +34,7 @@
 - 制作模式：[B／干嘛猫模式／通用蜗牛模式]
 - 故事跨度：[单日／跨日／非日程完整经历]
 - B 故事弧状态：[未开始／曲线讨论中／矩阵讨论中／待确认／已冻结／已失效／不适用]
-- 干嘛猫参考基线：[列出本轮实际已读取的 reference-mechanics.md、ganamao-six-script-deconstruction.md；B 模式还列出 b-vlog-final-analysis.md、b-vlog-scene-architecture.md、b-vlog-story-arc-framework.md、b-vlog-shot-prompt-examples.md、b-vlog-five-column-examples.md；任一必需文件未读取则停止创作]
+- 干嘛猫参考基线：[仅列出本轮按当前阶段实际读取的文件；普通创作优先 scene-architecture、story-arc-framework、reference-mechanics 与 templates，深度复算或原片核对才读取 b-vlog-final-analysis.md 与 b-vlog-five-scripts-shot-deconstruction.md；不得因长证据文件未读而阻塞无关阶段]
 - 主题状态：[未开始／讨论中／待确认／已冻结／已失效／已取代]
 - 故事大纲状态：[未开始／讨论中／待确认／已冻结／已失效／已取代]
 - 角色情节状态：[未开始／讨论中／待确认／已冻结／已失效／已取代]
