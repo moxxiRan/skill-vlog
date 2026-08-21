@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "SKILL.md"
 MANIFEST = ROOT / "references" / "b-vlog-source-manifest.md"
 ANALYSIS = ROOT / "references" / "b-vlog-final-analysis.md"
+DECONSTRUCTION = ROOT / "references" / "b-vlog-five-scripts-shot-deconstruction.md"
 OPENAI_YAML = ROOT / "agents" / "openai.yaml"
 
 
@@ -23,7 +24,7 @@ def fail(message: str, errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
 
-    required_files = [SKILL, MANIFEST, ANALYSIS, OPENAI_YAML]
+    required_files = [SKILL, MANIFEST, ANALYSIS, DECONSTRUCTION, OPENAI_YAML]
     for path in required_files:
         if not path.is_file():
             fail(f"missing required file: {path.relative_to(ROOT)}", errors)
@@ -64,6 +65,14 @@ def main() -> int:
     if "C:\\Users" in skill_text:
         fail("SKILL.md must not contain a user-local Windows path", errors)
 
+    legacy_references = [
+        ROOT / "references" / "b-vlog-shot-prompt-examples.md",
+        ROOT / "references" / "b-vlog-five-column-examples.md",
+    ]
+    for path in legacy_references:
+        if path.exists():
+            fail(f"legacy split reference still exists: {path.relative_to(ROOT)}", errors)
+
     reference_paths = sorted(set(re.findall(r"references/[A-Za-z0-9_.\-/]+", skill_text)))
     for reference in reference_paths:
         if not (ROOT / reference).is_file():
@@ -81,11 +90,27 @@ def main() -> int:
     )
     declared_bytes = re.search(r"内部文件字节数 \| (\d+) \|", manifest_text)
     declared_lines = re.search(r"内部文件行数 \| (\d+) \|", manifest_text)
+    declared_deconstruction_hash = re.search(
+        r"合并文件 SHA-256 \| `([0-9a-f]{64})`", manifest_text
+    )
+    declared_deconstruction_bytes = re.search(
+        r"合并文件字节数 \| (\d+) \|", manifest_text
+    )
+    declared_deconstruction_lines = re.search(
+        r"合并文件行数 \| (\d+) \|", manifest_text
+    )
 
     analysis_bytes = ANALYSIS.read_bytes()
     actual_hash = hashlib.sha256(analysis_bytes).hexdigest()
     actual_size = len(analysis_bytes)
     actual_lines = len(ANALYSIS.read_text(encoding="utf-8").splitlines())
+
+    deconstruction_bytes = DECONSTRUCTION.read_bytes()
+    actual_deconstruction_hash = hashlib.sha256(deconstruction_bytes).hexdigest()
+    actual_deconstruction_size = len(deconstruction_bytes)
+    actual_deconstruction_lines = len(
+        DECONSTRUCTION.read_text(encoding="utf-8").splitlines()
+    )
 
     if not declared_hash or declared_hash.group(1) != actual_hash:
         fail(f"analysis SHA mismatch: actual {actual_hash}", errors)
@@ -93,6 +118,34 @@ def main() -> int:
         fail(f"analysis byte-count mismatch: actual {actual_size}", errors)
     if not declared_lines or int(declared_lines.group(1)) != actual_lines:
         fail(f"analysis line-count mismatch: actual {actual_lines}", errors)
+    if (
+        not declared_deconstruction_hash
+        or declared_deconstruction_hash.group(1) != actual_deconstruction_hash
+    ):
+        fail(
+            f"deconstruction SHA mismatch: actual {actual_deconstruction_hash}",
+            errors,
+        )
+    if (
+        not declared_deconstruction_bytes
+        or int(declared_deconstruction_bytes.group(1))
+        != actual_deconstruction_size
+    ):
+        fail(
+            "deconstruction byte-count mismatch: "
+            f"actual {actual_deconstruction_size}",
+            errors,
+        )
+    if (
+        not declared_deconstruction_lines
+        or int(declared_deconstruction_lines.group(1))
+        != actual_deconstruction_lines
+    ):
+        fail(
+            "deconstruction line-count mismatch: "
+            f"actual {actual_deconstruction_lines}",
+            errors,
+        )
 
     if errors:
         for error in errors:
@@ -102,7 +155,9 @@ def main() -> int:
     print(
         f"[OK] developing-snail-vlogs: {len(skill_lines)} SKILL lines, "
         f"{len(reference_paths)} references, analysis {actual_lines} lines / "
-        f"{actual_size} bytes / {actual_hash}"
+        f"{actual_size} bytes / {actual_hash}; deconstruction "
+        f"{actual_deconstruction_lines} lines / {actual_deconstruction_size} bytes / "
+        f"{actual_deconstruction_hash}"
     )
     return 0
 
