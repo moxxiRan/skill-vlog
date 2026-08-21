@@ -1,0 +1,4 @@
+interface:
+  display_name: "蜗牛拟人 VLOG 内容开发"
+  short_description: "按冻结阶段制作B风格VLOG的Storyboard、首帧与逐镜视频提示词"
+  default_prompt: "Use $developing-snail-vlogs 读取当前脚本地址、脚本状态、历史机制索引和已有产物；B模式故事大纲先设计时间、任务、关系三条曲线，建立核心场景-事件矩阵和核心记忆事件，再冻结主题、大纲、角色情节与Storyboard。Storyboard之后按每个真实切镜建立独立首帧提示词，完成首帧生成、选择与验证，再为同镜写基于首帧的一镜一视频提示词，建议生成4-6秒并记录成片裁剪区间。首帧未验证不得写视频提示词，视频prompt不得重设计静态构图或新增镜头。真人路人只保留脖子以下部位，不出现真人人脸；该约束同时检查首帧和视频结果。台词表交给 $writing-snail-vlog-subtitles 唯一写入；旧式生图资产和Seedance组只在明确点名时作为兼容分支。只处理当前一个产物，结果未验证时不得声称已经兑现。"
